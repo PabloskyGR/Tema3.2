@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio3;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ public class Main {
 		int opc;
 
 		System.out.println("  - - - - - Menú - - - - - ");
-		System.out.println(" | 1. Perímetro           |");
+		System.out.println(" | 1. Circunferencia      |");
 		System.out.println(" | 2. Área                |");
 		System.out.println(" | 0. Salir               |");
 		System.out.println("  - - - - - Menú - - - - -  ");
@@ -23,12 +23,12 @@ public class Main {
 		return opc;
 	}
 
-	public static double pideAncho() {
-		double res = -1;
+	public static double pideRadio() {
+		double res = 0;
 
 		do {
 			try {
-				System.out.println("Dime el ancho del rectángulo:");
+				System.out.println("Dime el radio del círculo:");
 				res = sc.nextDouble();
 			} catch (InputMismatchException e) {
 				System.out.println("Error, el valor introducido no es de un tipo válido");
@@ -40,44 +40,26 @@ public class Main {
 		return res;
 	}
 
-	public static double pideAlto() {
-		double res = -1;
-
-		try {
-			System.out.println("Dime el alto del rectángulo:");
-			res = sc.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.println("Error, el valor introducido no es de un tipo válido");
-		} finally {
-			sc.nextLine();
-		}
-
-		return res;
-	}
-
 	public static void main(String[] args) {
 
-		Rectangulo rect = new Rectangulo();
-		double ancho;
-		double alto;
-		int opc;
+		Circulo circ = new Circulo();
 
-		ancho = pideAncho();
-		alto = pideAlto();
-		opc = menu();
+		int opc = menu();
+		double radio = pideRadio();
 
-		rect = new Rectangulo(ancho, alto);
+		circ = new Circulo(radio);
 
 		switch (opc) {
 		case 1:
-			System.out.println("Resultado del perímetro: " + rect.perimetro());
+			System.out.println("La circunferencia del circulo es de:" + circ.Circunferencia());
 			break;
 		case 2:
-			System.out.println("Resultado del área: " + rect.area());
+			System.out.println("El área del círculo es de: " + circ.Area());
 			break;
 		}
 
 		sc.close();
+
 	}
 
 }

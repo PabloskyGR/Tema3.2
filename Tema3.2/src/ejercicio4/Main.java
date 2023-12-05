@@ -1,4 +1,4 @@
-package ejercicio2;
+package ejercicio4;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ public class Main {
 		int opc;
 
 		System.out.println("  - - - - - Menú - - - - - ");
-		System.out.println(" | 1. Perímetro           |");
+		System.out.println(" | 1. Volumen             |");
 		System.out.println(" | 2. Área                |");
 		System.out.println(" | 0. Salir               |");
 		System.out.println("  - - - - - Menú - - - - -  ");
@@ -23,12 +23,12 @@ public class Main {
 		return opc;
 	}
 
-	public static double pideAncho() {
+	public static double pideRadioBase() {
 		double res = -1;
 
 		do {
 			try {
-				System.out.println("Dime el ancho del rectángulo:");
+				System.out.println("Dime la base del radio: ");
 				res = sc.nextDouble();
 			} catch (InputMismatchException e) {
 				System.out.println("Error, el valor introducido no es de un tipo válido");
@@ -40,44 +40,42 @@ public class Main {
 		return res;
 	}
 
-	public static double pideAlto() {
+	public static double altura() {
 		double res = -1;
 
-		try {
-			System.out.println("Dime el alto del rectángulo:");
-			res = sc.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.println("Error, el valor introducido no es de un tipo válido");
-		} finally {
-			sc.nextLine();
-		}
+		do {
+			try {
+				System.out.println("Dime la altura del cilinro");
+				res = sc.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("Error, el valor introducido no es de un tipo válido");
+			} finally {
+				sc.nextLine();
+			}
+		} while (res < 0);
 
 		return res;
 	}
 
 	public static void main(String[] args) {
 
-		Rectangulo rect = new Rectangulo();
-		double ancho;
-		double alto;
-		int opc;
+		Cilindro cil = new Cilindro();
 
-		ancho = pideAncho();
-		alto = pideAlto();
-		opc = menu();
+		int opc = menu();
+		double radioBase = pideRadioBase();
+		double altura = altura();
 
-		rect = new Rectangulo(ancho, alto);
+		cil = new Cilindro(radioBase, altura);
 
 		switch (opc) {
 		case 1:
-			System.out.println("Resultado del perímetro: " + rect.perimetro());
-			break;
+			System.out.println("El volumen del cilindro es de: " + cil.volumen());
 		case 2:
-			System.out.println("Resultado del área: " + rect.area());
-			break;
+			System.out.println("El área del cilindro es de: " + cil.area());
 		}
 
 		sc.close();
+
 	}
 
 }
