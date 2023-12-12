@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
+	// Abrimos el scanner
 	static Scanner sc = new Scanner(System.in);
 
+	// Método que muestra el menú y devuelve la opción seleccionada por el usuario
 	public static int menu() {
-
 		int opc;
 
 		System.out.println("  - - - - - Menú - - - - - ");
@@ -17,14 +18,15 @@ public class Main {
 		System.out.println(" | 0. Salir               |");
 		System.out.println("  - - - - - Menú - - - - -  ");
 		System.out.println();
-		System.out.println("Dime que quieras hacer:");
+		System.out.println("Dime qué quieres hacer:");
 		opc = sc.nextInt();
 
 		return opc;
 	}
 
+	// Método que pide al usuario el radio del círculo
 	public static double pideRadio() {
-		double res = 0;
+		double res = -1;
 
 		do {
 			try {
@@ -41,25 +43,35 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		
+		// Creamos el objeto circulo
+		Circulo circ; 
 
-		Circulo circ = new Circulo();
-
-		int opc = menu();
+		// Pedimos el radio llamando al método 'pideRadio'
 		double radio = pideRadio();
+		
+		// Mostramos el menú llamando al método 'menu' 
+		int opc = menu();
 
+		// Creamos un objeto con el radio introducido
 		circ = new Circulo(radio);
 
+		// Usamos un switch para realizar la opción que haya introducido el usuario
 		switch (opc) {
 		case 1:
-			System.out.println("La circunferencia del circulo es de:" + circ.Circunferencia());
+			System.out.println("La circunferencia del círculo es de: " + circ.Circunferencia());
 			break;
 		case 2:
 			System.out.println("El área del círculo es de: " + circ.Area());
 			break;
+		case 0:
+			System.out.println("Saliendo...");
+			break;
+		default:
+			System.out.println("Opción no válida.");
 		}
 
+		// Cerramos el scanner
 		sc.close();
-
 	}
-
 }
